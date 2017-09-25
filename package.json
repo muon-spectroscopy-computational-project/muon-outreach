@@ -1,0 +1,24 @@
+{
+  "name": "muon-outreach",
+  "version": "0.1.0",
+  "description": "A demonstrative applet for muon relaxation",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stur86/muon-outreach.git"
+  },
+  "keywords": [
+    "muons",
+    "outreach",
+    "demo"
+  ],
+  "author": "Simone Sturniolo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stur86/muon-outreach/issues"
+  },
+  "homepage": "https://github.com/stur86/muon-outreach#readme"
+}
