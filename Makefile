@@ -6,3 +6,9 @@ build/stylesheet.min.css: $(shell find scss -type f)
 
 all: build/stylesheet.min.css build/muon.min.js
 	@echo "Building all"
+
+push-page:
+	git subtree push --prefix build origin gh-pages
+
+test:
+	http-server build/
