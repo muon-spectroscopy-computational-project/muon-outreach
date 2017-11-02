@@ -23,6 +23,7 @@
   "homepage": "https://github.com/stur86/muon-outreach#readme",
   "devDependencies": {
     "d3": "^4.10.2",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "numeric": "^1.2.6"
   }
 }
