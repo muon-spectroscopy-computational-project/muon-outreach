@@ -1,5 +1,10 @@
-$col: #ff99bb;
+@import "../vendor/bulma";
 
-body {
-    background-color: $col;
+.muon-diagram {
+    background-color: #ff0000;
+}
+
+.muon-fid {
+
+    background-color: #00ff00;
 }
