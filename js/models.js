@@ -61,6 +61,7 @@ exports.UniaxialGaussianModel = function() {
                                           []);
 }
 exports.UniaxialGaussianModel.prototype = Object.create(Model.prototype);
+exports.UniaxialGaussianModel.fullname = "Gaussian distribution (along z axis)";
 
 exports.SphericalGaussianModel = function() {
     Model.call(this, Distributions.SphericalGaussian, 
@@ -69,3 +70,4 @@ exports.SphericalGaussianModel = function() {
                       new ArgDef('is_transverse', 'bool')]);
 }
 exports.SphericalGaussianModel.prototype = Object.create(Model.prototype);
+exports.SphericalGaussianModel.fullname = "Gaussian distribution (spherical)";

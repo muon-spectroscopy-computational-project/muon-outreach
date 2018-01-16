@@ -10,26 +10,27 @@ var skipFunc = function(skip) {
 var angApp = angular.module('muonApp', []);
 var muContr = angApp.controller('MuonModelController', function($scope) {
 
-    this.model_funcs = {
+    $scope.model_funcs = {
         'uniaxial': Models.UniaxialGaussianModel,
         'spherical': Models.SphericalGaussianModel,
     };
 
-    this.model_type = 'uniaxial';
+    $scope.model_type = 'uniaxial';
 
-    this.update_model = function() {
-        this.model = new this.model_funcs[this.model_type]();
+    $scope.update_model = function() {
+        $scope.model = new $scope.model_funcs[$scope.model_type]();
+        $scope.plot();
     }
 
-    this.skipX = 10;
+    $scope.skipX = 10;
 
-    this.plot = function() {
+    $scope.plot = function() {
 
-        this.model.update();
+        $scope.model.update();
 
         var options = {
             axisX: {
-                labelInterpolationFnc: skipFunc(this.skipX),        
+                labelInterpolationFnc: skipFunc($scope.skipX),        
             },
             axisY: {
                 scaleMinSpace: 50,
@@ -37,13 +38,13 @@ var muContr = angApp.controller('MuonModelController', function($scope) {
             showPoint: false,
         };
 
-        this.line = new Chartist.Line('#muon-fid', {labels: this.model.t, 
-                                                    series: [this.model.fid]},
-                                      options);
+        $scope.line = new Chartist.Line('#muon-fid', {labels: $scope.model.t, 
+                                                      series: [$scope.model.fid]},
+                                        options);
     }
 
-    this.update_model();
-    this.plot();
+    $scope.update_model();
+    $scope.plot();
 });
 
 angular.element(function() {
