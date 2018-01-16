@@ -45,7 +45,7 @@ exports.SphericalGaussian = function(D, n, B_ext, transverse) {
                 }                
             }
             else {
-                // Transverse case (to be implemented)
+                // Transverse case
                 for (var j = 0; j < n; ++j) {
                     costh = 1-2*j/(n-1.0);
                     costh2 = costh*costh;
