@@ -42,7 +42,7 @@ exports.SphericalGaussian = function(D, n, B_ext, transverse) {
                     costh2 = costh*costh;
                     weight0 += costh2*Math.exp(2*f*B_ext/D*costh)*omdens;
                     weights[i] += (1-costh2)*Math.exp(2*f*B_ext/D*costh)*omdens;
-                }                
+                }
             }
             else {
                 // Transverse case

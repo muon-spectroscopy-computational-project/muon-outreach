@@ -1,6 +1,30 @@
 @import "../vendor/bulma";
+@import "../vendor/bulma-extensions/slider";
+@import "../vendor/bulma-extensions/checkradio";
 @import "../vendor/chartist";
 
-#muon-diagram {
-    background-color: #ff0000;
+%slider-style {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */    
 }
+
+input[type=range]::-moz-range-thumb {
+    @extend %slider-style
+}
+
+input[type=range]::-webkit-slider-thumb {
+    //-webkit-appearance: none; /* Override default look */
+    //appearance: none;
+    @extend %slider-style;
+}
+
+.text-box {
+    display: block;
+    padding: 20px;
+    border: solid 5px hsl(171, 100%, 41%);
+    border-radius: 10px;
+    background-color: #eafffa;
+}
+

@@ -1,5 +1,5 @@
 d3 = require('d3');
-angular = require('angular');
+Angular = require('angular');
 Chartist = require('chartist');
 Models = require('./js/models.js');
 
@@ -7,7 +7,7 @@ var skipFunc = function(skip) {
     return function(v, i) { return (i%skip == 0)? v.toFixed(2) : null; };
 }
 
-var angApp = angular.module('muonApp', []);
+var angApp = Angular.module('muonApp', []);
 var muContr = angApp.controller('MuonModelController', function($scope) {
 
     $scope.model_funcs = {
@@ -33,6 +33,8 @@ var muContr = angApp.controller('MuonModelController', function($scope) {
                 labelInterpolationFnc: skipFunc($scope.skipX),        
             },
             axisY: {
+                high: 1,
+                low: -0.5,
                 scaleMinSpace: 50,
             },
             showPoint: false,
@@ -47,8 +49,8 @@ var muContr = angApp.controller('MuonModelController', function($scope) {
     $scope.plot();
 });
 
-angular.element(function() {
-  angular.bootstrap(document, ['muonApp']);
+Angular.element(function() {
+  Angular.bootstrap(document, ['muonApp']);
 });
 
 var n = 100;

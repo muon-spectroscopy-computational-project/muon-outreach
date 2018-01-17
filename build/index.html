@@ -34,11 +34,12 @@
                 </div>
 
                 <div class="tile is-parent">
-                    <div class="tile is-child notification is-primary">
+                    <div class="tile is-child text-box">
                         <div class="columns">
                             <div class="column">
                                 <div class="field">
                                     <div class="control">
+                                        <span class="label">Distribution type</span>
                                         <div class="select">
                                             <select ng-model="model_type" ng-change="update_model()">
                                                 <option ng-repeat="(key, func) in model_funcs" value="{{key}}"> {{func.fullname}} </option>
@@ -48,42 +49,50 @@
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <input type="text" class="input" value="10" width="5" maxlength="5">
+                                        <span class="label">Distribution width</span>
+                                        <input type="range" ng-model="model.D" ng-mouseup="plot()" class="slider is-primary" value="10" min="5" max="15">
+                                        {{model.D}}
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <span class="label">Jump frequency</span>
+                                        <input type="range" ng-model="model.nu" ng-mouseup="plot()" class="slider is-primary" value="0" min="0" max="100">
+                                        {{model.nu}}
                                     </div>
                                 </div>
                             </div>
                             <div class="column">
+                                <div class="field" ng-repeat="(i, a) in model.args">
+                                    <div ng-if="a.type == 'float'">
+                                        <span class="label">{{a.fullname}}</span>
+                                        <input type="range" ng-model="model.arg_vals[i]" ng-mouseup="plot()" class="slider is-primary" value="0" min="{{a.min}}" max="{{a.max}}" title="{{a.description}}">
+                                        {{model.arg_vals[i]}}
+                                    </div>
+                                    <div ng-if="a.type == 'bool'">
+                                        <input class="is-checkradio" type="checkbox" id="{{a.name}}" ng-if="a.type == 'bool'" ng-model="model.arg_vals[i]" ng-change="plot()" title="{{a.description}}">
+                                        <label class="label" for="{{a.name}}">{{a.fullname}}</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="tile is-parent is-vertical">
-                <div class="tile is-child notification is-primary">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <div class="tile is-child text-box is-primary">
+                    <div ng-switch="model_type">
+                        <!-- Model descriptions -->
+                        <div ng-switch-when="uniaxial">
+                            Uniaxial
+                        </div>
+                        <div ng-switch-when="spherical">
+                            Spherical
+                        </div>
+                        <div ng-switch-default>
+                            No description available
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

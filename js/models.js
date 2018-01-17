@@ -2,9 +2,11 @@
 var DysonFID = require('./dyson.js').DysonFID;
 var Distributions = require('./distributions.js');
 
-var ArgDef = function(name, type, min, max) {
+var ArgDef = function(name, type, fullname, description, min, max) {
     this.name = name;
     this.type = type;
+    this.fullname = fullname;
+    this.description = description;
 
     if (type == 'float') {
         this.min = min || 0;
@@ -33,8 +35,8 @@ var Model = function(distribution, D, n, dt, tsteps, args) {
     this.dt = dt || 0.01;
     this.tsteps = tsteps || 150;
     this.nu = 0;
-    args = args || [];
-    arg_vals = args.map(function(a) { return a.default(); });
+    this.args = args || [];
+    this.arg_vals = args.map(function(a) { return a.default(); });
 
 }
 
@@ -66,8 +68,13 @@ exports.UniaxialGaussianModel.fullname = "Gaussian distribution (along z axis)";
 exports.SphericalGaussianModel = function() {
     Model.call(this, Distributions.SphericalGaussian, 
                      5.0, 36, 0.01, 150,
-                     [new ArgDef('B_external', 'float', 0.0, 10.0),
-                      new ArgDef('is_transverse', 'bool')]);
+                     [new ArgDef('B_external', 'float',
+                                 'External magnetic field', 
+                                 'External field applied to the sample',
+                                 0.0, 30.0),
+                      new ArgDef('is_transverse', 'bool',
+                                 'Use transverse setup', 
+                                 'If checked, the external field is applied in a direction transverse to the magnetization')]);
 }
 exports.SphericalGaussianModel.prototype = Object.create(Model.prototype);
 exports.SphericalGaussianModel.fullname = "Gaussian distribution (spherical)";
