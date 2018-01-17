@@ -3,6 +3,24 @@
 @import "../vendor/bulma-extensions/checkradio";
 @import "../vendor/chartist";
 
+// Some generic helpers
+.is-relative {
+    position: relative;
+}
+
+.is-position-centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.is-undisplayed {
+    display: none;
+}
+
 %slider-style {
     width: 25px; /* Set a specific slider handle width */
     height: 25px; /* Slider handle height */

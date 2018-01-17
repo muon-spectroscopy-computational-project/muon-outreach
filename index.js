@@ -10,6 +10,8 @@ var skipFunc = function(skip) {
 var angApp = Angular.module('muonApp', []);
 var muContr = angApp.controller('MuonModelController', function($scope) {
 
+    $scope.loading = false;
+
     $scope.model_funcs = {
         'uniaxial': Models.UniaxialGaussianModel,
         'spherical': Models.SphericalGaussianModel,
@@ -18,6 +20,11 @@ var muContr = angApp.controller('MuonModelController', function($scope) {
     $scope.model_type = 'uniaxial';
 
     $scope.update_model = function() {
+
+        // This needs to be done by hand as it's during the update
+        var loadButton = Angular.element( document.querySelector( '#plot-loading' ) );
+        loadButton.removeClass('is-undisplayed');
+
         $scope.model = new $scope.model_funcs[$scope.model_type]();
         $scope.plot();
     }
@@ -25,6 +32,9 @@ var muContr = angApp.controller('MuonModelController', function($scope) {
     $scope.skipX = 10;
 
     $scope.plot = function() {
+
+        var loadButton = Angular.element( document.querySelector( '#plot-loading' ) );
+        loadButton.removeClass('is-undisplayed');
 
         $scope.model.update();
 
@@ -43,6 +53,8 @@ var muContr = angApp.controller('MuonModelController', function($scope) {
         $scope.line = new Chartist.Line('#muon-fid', {labels: $scope.model.t, 
                                                       series: [$scope.model.fid]},
                                         options);
+
+        loadButton.addClass('is-undisplayed');
     }
 
     $scope.update_model();
