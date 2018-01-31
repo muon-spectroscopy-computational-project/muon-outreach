@@ -5,11 +5,11 @@ var DysonFID = require('../js/dyson.js').DysonFID;
 
 var SG = require('../js/distributions.js').SphericalGaussian;
 
-distr = SG(1, 10, 3);
+distr = SG(1, 10, 0);
 //console.log(w);
 //console.log(SG(1, 10, 1, true));
 
-dfid = new DysonFID(distr.freqs, 0.05, 0, distr.weights);
+dfid = new DysonFID(distr.freqs, 0.05, 10, distr.weights);
 
 for (var i = 0; i < 200; ++i) {
     dfid.step();
