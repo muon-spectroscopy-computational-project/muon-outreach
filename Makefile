@@ -10,5 +10,5 @@ all: build/stylesheet.min.css build/muon.min.js
 push-page:
 	git subtree push --prefix build origin gh-pages
 
-test:
+test_server:
 	http-server build/
