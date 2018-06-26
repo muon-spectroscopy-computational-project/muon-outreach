@@ -73,3 +73,26 @@ exports.SphericalGaussian = function(D, n, B_ext, transverse) {
         'weights': weights
     };
 }
+
+exports.PlanarExponential = function(lambda, n, L, B_max) {
+    // Planar exponential distribution with coherence length lambda
+    // and triangular lattice parameter L
+
+    n = n || 20;
+    L = L || lambda*5.0;
+    B_max = B_max || 1.0;
+    B_min = B_max*Math.exp(-L/(2.0*lambda));
+
+    freqs = [];
+    weights = [];
+    for (var i = 0; i < n; ++i) {
+        B = (B_max-B_min)*(i/(n-1.0))+B_min
+        freqs.push(B);
+        weights.push(-Math.log(B/B_max));
+    }
+
+    return {
+        'freqs': freqs,
+        'weights': weights
+    };
+}

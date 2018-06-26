@@ -53,21 +53,22 @@
                                 <div class="field">
                                     <div class="control">
                                         <span class="label">Distribution width</span>
-                                        <input type="range" ng-model="model.D" ng-mouseup="plot()" class="slider is-primary" value="10" min="5" max="15">
+                                        <input type="range" ng-model="model.D" ng-mouseup="plot()" class="slider is-primary"
+                                        value="{{model.minD}}" min="{{model.minD}}" max="{{model.maxD}}">
                                         {{model.D}}
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="control">
                                         <span class="label">Jump frequency</span>
-                                        <input type="range" ng-model="model.nu" ng-mouseup="plot()" class="slider is-primary" value="0" min="0" max="100">
+                                        <input type="range" ng-model="model.nu" ng-mouseup="plot()" class="slider is-primary" value="{{model.minNu}}" min="{{model.minNu}}" max="{{model.maxNu}}">
                                         {{model.nu}}
                                     </div>
                                 </div>
                             </div>
                             <div class="column">
                                 <div class="field" ng-repeat="(i, a) in model.args">
-                                    <div ng-show="!fixed_args.includes(a.name)">
+                                    <div ng-show="!a.fixed">
                                         <div ng-if="a.type == 'float'">
                                             <span class="label">{{a.fullname}}</span>
                                             <input type="range" ng-model="model.arg_vals[i]" ng-mouseup="plot()" class="slider is-primary" value="0" min="{{a.min}}" max="{{a.max}}" title="{{a.description}}">

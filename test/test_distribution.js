@@ -5,13 +5,16 @@ var DysonFID = require('../js/dyson.js').DysonFID;
 
 var SG = require('../js/distributions.js').SphericalGaussian;
 
-distr = SG(1, 10, 0);
+var PE = require('../js/distributions.js').PlanarExponential;
+
+distr = PE(5.0, 100, 30.0, 100.0);
+
 //console.log(w);
 //console.log(SG(1, 10, 1, true));
 
-dfid = new DysonFID(distr.freqs, 0.05, 10, distr.weights);
+dfid = new DysonFID(distr.freqs, 0.01, 0, distr.weights);
 
-for (var i = 0; i < 200; ++i) {
+for (var i = 0; i < 400; ++i) {
     dfid.step();
     console.log(dfid.t, dfid.FID);
 }

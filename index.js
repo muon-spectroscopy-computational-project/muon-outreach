@@ -17,6 +17,7 @@ var muContr = angApp.controller('MuonModelController', function($scope,
     $scope.model_funcs = {
         'uniaxial': Models.UniaxialGaussianModel,
         'spherical': Models.SphericalGaussianModel,
+        'planexp': Models.PlanarExponentialModel,
     };
 
     $scope.model_type = 'uniaxial';
@@ -67,7 +68,6 @@ var muContr = angApp.controller('MuonModelController', function($scope,
     if ('model_type' in url_params && url_params.model_type in $scope.model_funcs) {        
         $scope.model_type = url_params.model_type;
         $scope.model_fixed = true;
-        $scope.fixed_args = [];
 
         // In this case, also search for fixed arguments
         $scope.update_model();
@@ -90,7 +90,7 @@ var muContr = angApp.controller('MuonModelController', function($scope,
                             break;
                     }
                     $scope.model.arg_vals[arg_i] = val;
-                    $scope.fixed_args.push(argname);
+                    $scope.model.args[arg_i].fixed = true;
                 }
             }
         }
@@ -109,26 +109,4 @@ var n = 100;
 var dx = 0.01;
 
 var skipX = 10;
-
-
-/*
-// Test with a long array?
-distr = UniaxialGaussian(5.0, 36);
-freqs = distr.freqs;
-weights = distr.weights;
-
-dfid = new DysonFID(freqs, 0.01, 6.0, weights);
-
-t = [0];
-fid = [1];
-
-for (var i = 0; i < 150; ++i) {
-    dfid.step();
-    t.push(dfid.t);
-    fid.push(dfid.FID);
-}
-*/
-
-//var uniModel = UniaxialGaussianModel;
-//uniModel.update();
 
