@@ -1,6 +1,7 @@
 d3 = require('d3');
 Angular = require('angular');
 Chartist = require('chartist');
+QString = require('query-string');
 Models = require('./js/models.js');
 
 var skipFunc = function(skip) {
@@ -8,7 +9,8 @@ var skipFunc = function(skip) {
 }
 
 var angApp = Angular.module('muonApp', []);
-var muContr = angApp.controller('MuonModelController', function($scope) {
+var muContr = angApp.controller('MuonModelController', function($scope, 
+    $window) {
 
     $scope.loading = false;
 
@@ -18,6 +20,7 @@ var muContr = angApp.controller('MuonModelController', function($scope) {
     };
 
     $scope.model_type = 'uniaxial';
+    $scope.model_fixed = false;
 
     $scope.update_model = function() {
 
@@ -28,6 +31,7 @@ var muContr = angApp.controller('MuonModelController', function($scope) {
         $scope.model = new $scope.model_funcs[$scope.model_type]();
         $scope.plot();
     }
+
 
     $scope.skipX = 10;
 
@@ -57,7 +61,43 @@ var muContr = angApp.controller('MuonModelController', function($scope) {
         loadButton.addClass('is-undisplayed');
     }
 
-    $scope.update_model();
+    // Through URL parameters, the type and some arguments can be fixed
+    var url_params = QString.parse($window.location.search);
+
+    if ('model_type' in url_params && url_params.model_type in $scope.model_funcs) {        
+        $scope.model_type = url_params.model_type;
+        $scope.model_fixed = true;
+        $scope.fixed_args = [];
+
+        // In this case, also search for fixed arguments
+        $scope.update_model();
+
+        var url_model_args = [];
+        for (up in url_params) {
+            if (up.indexOf('model_arg_') == 0) {
+                var argname = up.slice(10); // Everything after model_arg_
+                var arg_i = $scope.model.args.findIndex(function(a) {
+                    return a.name == argname;
+                });
+                if (arg_i > -1) {
+                    var val = url_params[up];
+                    switch($scope.model.args[arg_i].type) {
+                        case 'float':
+                            val = parseFloat(val);
+                            break;
+                        case 'bool':
+                            val = (val == 'true')
+                            break;
+                    }
+                    $scope.model.arg_vals[arg_i] = val;
+                    $scope.fixed_args.push(argname);
+                }
+            }
+        }
+    }
+    else {
+        $scope.update_model();
+    }
     $scope.plot();
 });
 
