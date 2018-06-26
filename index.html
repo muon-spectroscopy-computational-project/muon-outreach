@@ -84,13 +84,23 @@
             </div>
             <div class="tile is-parent is-vertical">
                 <div class="tile is-child text-box is-primary">
-                    <div ng-switch="model_type">
+                    <div ng-switch="model_type" ng-cloak>
                         <!-- Model descriptions -->
-                        <div ng-switch-when="uniaxial">
-                            Uniaxial
+                        <div ng-switch-when="uniaxial" ng-cloak>
+                            <h3>Gaussian distribution (along z axis)</h3>
+                            <p>Here we consider an idealised situation where the muon experiences a Gaussian field distribution along only its spin direction.</p>
+                            <p>The app shows how it responds to changes in the magnitude and fluctuation rate of that field distribution. Such a situation might occur in a layered system where both the magnetic moments point only out of the plane and the muon is coplanar with them, or special situations where hyperfine coupling is predominant.</p>
+                            <p>Increasing the distribution width means that the muon spin is depolarised more quickly and in the absence of fluctuations this depolarisation takes a Gaussian form.</p>
+                            <p>Increasing the jump frequency, which could come from magnetic fluctuations or muon hopping, slows the depolarisation. Once the jump frequency exceeds   around three times the distribution width the depolarisation is well approximated by an exponential form.</p>
                         </div>
-                        <div ng-switch-when="spherical">
-                            Spherical
+                        <div ng-switch-when="spherical" ng-cloak>
+                            <h3>Gaussian distribution (spherical)</h3>
+<p>This situation is a good approximation for the field distribution in a dilute spin glass system or a system where nuclear moments dominate the field distribution width. Here the muon experiences a spherically symmetric Gaussian field distribution and the resulting depolarisation takes the well-known Gaussian Kubo-Toyabe form.</p>
+<p>Starting with the jump frequency and external magnetic field set to zero, changing the distribution width changes the form of the static Gaussian Kubo-Toyabe function displayed.</p>
+<p>Changing the jump frequency reproduces the effect of muon hopping in a material like copper or ions moving past a static muon in a battery material. The dip in the Kubo-Toyabe function disappears as the jump frequency increases until the relaxation appears similar to an exponential, once the jump frequency exceeds around three times the distribution width.</p>
+<p>Changing the applied magnetic field is another way to probe the field distribution within the sample. As the field is increased the asymmetry at longer time increases. This is because the applied field is greater than some of the fields in the distribution and the muon spin is no longer depolarised by those internal fields. As the applied field is increased to exceed the distribution width the asymmetry at longer time increases to almost the initial asymmetry and oscillations appear at short times.</p>
+<p>Both the jump frequency and applied magnetic field can be altered at the same time. This combination is relevant to the way experiments on battery materials are usually performed. The two changing parameters, one intrinsic, the other extrinsic, allow the fitting function to be constrained better by measurements in different applied fields than increased counting time in one applied field.</p>
+<p>The tick box to use transverse setup shows an alternative way of doing similar experiments, using the applied field to cause the muons to precess. This is described by the Abragam function. Changing the parameters has a similar effect in this case, with the distribution width and jump frequency changing the way the oscillation is modulated and the applied field changing the frequency.</p>
                         </div>
                         <div ng-switch-default>
                             No description available
