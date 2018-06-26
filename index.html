@@ -40,7 +40,7 @@
                     <div class="tile is-child text-box">
                         <div class="columns">
                             <div class="column">
-                                <div class="field">
+                                <div class="field" ng-show="!model_fixed">
                                     <div class="control">
                                         <span class="label">Distribution type</span>
                                         <div class="select">
@@ -67,14 +67,16 @@
                             </div>
                             <div class="column">
                                 <div class="field" ng-repeat="(i, a) in model.args">
-                                    <div ng-if="a.type == 'float'">
-                                        <span class="label">{{a.fullname}}</span>
-                                        <input type="range" ng-model="model.arg_vals[i]" ng-mouseup="plot()" class="slider is-primary" value="0" min="{{a.min}}" max="{{a.max}}" title="{{a.description}}">
-                                        {{model.arg_vals[i]}}
-                                    </div>
-                                    <div ng-if="a.type == 'bool'">
-                                        <input class="is-checkradio" type="checkbox" id="{{a.name}}" ng-if="a.type == 'bool'" ng-model="model.arg_vals[i]" ng-change="plot()" title="{{a.description}}">
-                                        <label class="label" for="{{a.name}}">{{a.fullname}}</label>
+                                    <div ng-show="!fixed_args.includes(a.name)">
+                                        <div ng-if="a.type == 'float'">
+                                            <span class="label">{{a.fullname}}</span>
+                                            <input type="range" ng-model="model.arg_vals[i]" ng-mouseup="plot()" class="slider is-primary" value="0" min="{{a.min}}" max="{{a.max}}" title="{{a.description}}">
+                                            {{model.arg_vals[i]}}
+                                        </div>
+                                        <div ng-if="a.type == 'bool'">
+                                            <input class="is-checkradio" type="checkbox" id="{{a.name}}" ng-if="a.type == 'bool'" ng-model="model.arg_vals[i]" ng-change="plot()" title="{{a.description}}">
+                                            <label class="label" for="{{a.name}}">{{a.fullname}}</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
