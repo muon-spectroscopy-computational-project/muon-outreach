@@ -103,7 +103,7 @@ exports.PlanarExponentialModel = function() {
                                  'Maximum magnetic field',
                                  'Intensity of the magnetic field at the core of a vortex', 
                                  true,
-                                 100.0)
+                                 50.0)
                      ], 1.0, 60.0);
 }
 exports.PlanarExponentialModel.prototype = Object.create(Model.prototype);

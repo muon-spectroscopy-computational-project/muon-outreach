@@ -74,21 +74,44 @@ exports.SphericalGaussian = function(D, n, B_ext, transverse) {
     };
 }
 
-exports.PlanarExponential = function(lambda, n, L, B_max) {
+exports.PlanarExponential = function(lambda, n, L, B_max, cut_lambda) {
     // Planar exponential distribution with coherence length lambda
     // and triangular lattice parameter L
 
     n = n || 20;
-    L = L || lambda*5.0;
+    cut_lambda = cut_lambda || 5.0;
+    L = L || lambda*cut_lambda;
     B_max = B_max || 1.0;
-    B_min = B_max*Math.exp(-L/(2.0*lambda));
 
     freqs = [];
     weights = [];
+
+    /*
     for (var i = 0; i < n; ++i) {
         B = (B_max-B_min)*(i/(n-1.0))+B_min
         freqs.push(B);
         weights.push(-Math.log(B/B_max));
+    }
+    */
+
+    // Maximum distance, over which everything is considered as zero
+    var l = Math.min(L/2.0, lambda*cut_lambda);
+    // Fraction of non-zero frequency area
+    var f = l*l*4.0/(L*L);
+    if (f < 1) {
+        freqs.push(0.0);
+        weights.push(1.0-f);
+    }
+    // Now non-zero frequencies
+    var B_l_step = Math.sqrt(13.0/48.0)*l/n;
+    for (var i = 0; i < n; ++i) {
+        B_l = B_l_step*(i+0.5);
+        //console.log(B_max);
+        B = B_max*Math.exp(-B_l/lambda);
+        w = (2*i+1.0)/(n*n);
+
+        freqs.push(B);
+        weights.push(w);
     }
 
     return {
