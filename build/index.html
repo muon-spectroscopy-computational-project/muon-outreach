@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <span class="label">Distribution width</span>
+                                        <span class="label">{{model.distr_width_label || "Distribution width"}}</span>
                                         <input type="range" ng-model="model.D" ng-mouseup="plot()" class="slider is-primary"
                                         value="{{model.minD}}" min="{{model.minD}}" max="{{model.maxD}}">
                                         {{model.D}}

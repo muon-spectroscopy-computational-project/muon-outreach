@@ -105,6 +105,7 @@ exports.PlanarExponentialModel = function() {
                                  true,
                                  50.0)
                      ], 1.0, 60.0);
+    this.distr_width_label = "Lambda";
 }
 exports.PlanarExponentialModel.prototype = Object.create(Model.prototype);
 exports.PlanarExponentialModel.fullname = "Planar exponential distribution"
