@@ -74,7 +74,7 @@ exports.SphericalGaussian = function(D, n, B_ext, transverse) {
     };
 }
 
-exports.PlanarExponential = function(lambda, n, L, B_max, cut_lambda) {
+exports.PlanarExponential = function(lambda, n, L, B_max, B_shift, cut_lambda) {
     // Planar exponential distribution with coherence length lambda
     // and triangular lattice parameter L
 
@@ -82,6 +82,7 @@ exports.PlanarExponential = function(lambda, n, L, B_max, cut_lambda) {
     cut_lambda = cut_lambda || 5.0;
     L = L || lambda*cut_lambda;
     B_max = B_max || 1.0;
+    B_shift = B_shift || 0.0;
 
     freqs = [];
     weights = [];
@@ -99,7 +100,7 @@ exports.PlanarExponential = function(lambda, n, L, B_max, cut_lambda) {
     // Fraction of non-zero frequency area
     var f = l*l*4.0/(L*L);
     if (f < 1) {
-        freqs.push(0.0);
+        freqs.push(B_shift);
         weights.push(1.0-f);
     }
     // Now non-zero frequencies
@@ -110,7 +111,7 @@ exports.PlanarExponential = function(lambda, n, L, B_max, cut_lambda) {
         B = B_max*Math.exp(-B_l/lambda);
         w = (2*i+1.0)/(n*n);
 
-        freqs.push(B);
+        freqs.push(B+B_shift);
         weights.push(w);
     }
 
@@ -118,4 +119,13 @@ exports.PlanarExponential = function(lambda, n, L, B_max, cut_lambda) {
         'freqs': freqs,
         'weights': weights
     };
+}
+
+exports.TwoSites = function(delta_B, _, B_central) {
+
+    return {
+        'freqs': [B_central-delta_B/2.0, B_central+delta_B/2.0, 0.0],
+        'weights': [1.0/3.0, 1.0/3.0, 1.0/3.0]
+    };
+
 }

@@ -18,6 +18,7 @@ var muContr = angApp.controller('MuonModelController', function($scope,
         'uniaxial': Models.UniaxialGaussianModel,
         'spherical': Models.SphericalGaussianModel,
         'planexp': Models.PlanarExponentialModel,
+        'twosite': Models.TwoSiteModel,
     };
 
     $scope.model_type = 'uniaxial';
@@ -49,7 +50,7 @@ var muContr = angApp.controller('MuonModelController', function($scope,
             },
             axisY: {
                 high: 1,
-                low: -0.5,
+                low: -1,
                 scaleMinSpace: 50,
             },
             showPoint: false,
