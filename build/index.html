@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <span class="label">Jump frequency</span>
+                                        <span class="label">{{model.jump_freq_label || "Jump frequency"}}</span>
                                         <input type="range" ng-model="model.nu" ng-mouseup="plot()" class="slider is-primary" value="{{model.minNu}}" min="{{model.minNu}}" max="{{model.maxNu}}">
                                         {{model.nu}}
                                     </div>
