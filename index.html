@@ -65,6 +65,13 @@
                                         {{model.nu}}
                                     </div>
                                 </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <span class="label">{{model.T1_label || "T1"}}</span>
+                                        <input type="range" ng-model="model.invT1" ng-mouseup="plot()" class="slider is-primary" value="{{model.mininvT1}}" min="{{model.mininvT1}}" max="{{model.maxinvT1}}" step="0.1">
+                                        {{model.invT1 > 0? (1.0/model.invT1).toFixed(2) : "Infinite"}}
+                                    </div>
+                                </div>
                             </div>
                             <div class="column">
                                 <div class="field" ng-repeat="(i, a) in model.args">
@@ -98,12 +105,23 @@
                         </div>
                         <div ng-switch-when="spherical" ng-cloak>
                             <h3>Gaussian distribution (spherical)</h3>
-<p>This situation is a good approximation for the field distribution in a dilute spin glass system or a system where nuclear moments dominate the field distribution width. Here the muon experiences a spherically symmetric Gaussian field distribution and the resulting depolarisation takes the well-known Gaussian Kubo-Toyabe form.</p>
-<p>Starting with the jump frequency and external magnetic field set to zero, changing the distribution width changes the form of the static Gaussian Kubo-Toyabe function displayed.</p>
-<p>Changing the jump frequency reproduces the effect of muon hopping in a material like copper or ions moving past a static muon in a battery material. The dip in the Kubo-Toyabe function disappears as the jump frequency increases until the relaxation appears similar to an exponential, once the jump frequency exceeds around three times the distribution width.</p>
-<p>Changing the applied magnetic field is another way to probe the field distribution within the sample. As the field is increased the asymmetry at longer time increases. This is because the applied field is greater than some of the fields in the distribution and the muon spin is no longer depolarised by those internal fields. As the applied field is increased to exceed the distribution width the asymmetry at longer time increases to almost the initial asymmetry and oscillations appear at short times.</p>
-<p>Both the jump frequency and applied magnetic field can be altered at the same time. This combination is relevant to the way experiments on battery materials are usually performed. The two changing parameters, one intrinsic, the other extrinsic, allow the fitting function to be constrained better by measurements in different applied fields than increased counting time in one applied field.</p>
-<p>The tick box to use transverse setup shows an alternative way of doing similar experiments, using the applied field to cause the muons to precess. This is described by the Abragam function. Changing the parameters has a similar effect in this case, with the distribution width and jump frequency changing the way the oscillation is modulated and the applied field changing the frequency.</p>
+                            <p>This situation is a good approximation for the field distribution in a dilute spin glass system or a system where nuclear moments dominate the field distribution width. Here the muon experiences a spherically symmetric Gaussian field distribution and the resulting depolarisation takes the well-known Gaussian Kubo-Toyabe form.</p>
+                            <p>Starting with the jump frequency and external magnetic field set to zero, changing the distribution width changes the form of the static Gaussian Kubo-Toyabe function displayed.</p>
+                            <p>Changing the jump frequency reproduces the effect of muon hopping in a material like copper or ions moving past a static muon in a battery material. The dip in the Kubo-Toyabe function disappears as the jump frequency increases until the relaxation appears similar to an exponential, once the jump frequency exceeds around three times the distribution width.</p>
+                            <p>Changing the applied magnetic field is another way to probe the field distribution within the sample. As the field is increased the asymmetry at longer time increases. This is because the applied field is greater than some of the fields in the distribution and the muon spin is no longer depolarised by those internal fields. As the applied field is increased to exceed the distribution width the asymmetry at longer time increases to almost the initial asymmetry and oscillations appear at short times.</p>
+                            <p>Both the jump frequency and applied magnetic field can be altered at the same time. This combination is relevant to the way experiments on battery materials are usually performed. The two changing parameters, one intrinsic, the other extrinsic, allow the fitting function to be constrained better by measurements in different applied fields than increased counting time in one applied field.</p>
+                            <p>The tick box to use transverse setup shows an alternative way of doing similar experiments, using the applied field to cause the muons to precess. This is described by the Abragam function. Changing the parameters has a similar effect in this case, with the distribution width and jump frequency changing the way the oscillation is modulated and the applied field changing the frequency.</p>
+                        </div>
+                        <div ng-switch-when="planexp" ng-cloak>
+                            <h3>Planar exponential distribution</h3>
+                            <p>Typical of superconductors of type II at low temperature, when the magnetic field penetrates the superconductor through a triangular lattice of so-called vortices, this distribution is characterised by an exponential decay of the residual magnetic field inside the bulk of the superconductor.</p>
+                            <p>The parameter lambda represents the depth of penetration of the magnetic field inside the bulk of the superconductor; the distribution itself is given by the exponentially decaying fields that one finds further and further from each vortex.</p>
+                            <p>Dynamics here can be related to motions of the muon or of the vortices themselves, which at higher temperature start drifting.</p>
+                            <p>An additional parameter is provided for an external magnetic field that can shift the frequency distribution as a whole.</p>
+                        </div>
+                        <div ng-switch-when="twosite" ng-cloak>
+                            <h3>Two site distribution</h3>
+                            <p>These are just two sites with different frequencies and a possible jumping process between them. The site frequencies, B<sub>1</sub> and B<sub>2</sub> are determined by a magnetic field difference, ΔB=(B<sub>2</sub>-B<sub>1</sub>), and by an average magnetic field (B<sub>1</sub>+B<sub>2</sub>)/2.</p>
                         </div>
                         <div ng-switch-default>
                             No description available
