@@ -65,6 +65,8 @@
                                         {{model.nu}}
                                     </div>
                                 </div>
+                            </div>
+                            <div class="column">
                                 <div class="field">
                                     <div class="control">
                                         <span class="label">{{model.T1_label || "T1"}}</span>
@@ -72,8 +74,6 @@
                                         {{model.invT1 > 0? (1.0/model.invT1).toFixed(2) : "Infinite"}}
                                     </div>
                                 </div>
-                            </div>
-                            <div class="column">
                                 <div class="field" ng-repeat="(i, a) in model.args">
                                     <div ng-show="!a.fixed">
                                         <div ng-if="a.type == 'float'">
