@@ -112,7 +112,7 @@ exports.PlanarExponentialModel = function() {
                                  'External applied magnetic field',
                                  'Intensity of applied magnetic field that shifts the entire distribution by a fixed value',
                                  false,
-                                 0.0, -30.0, 30.0)
+                                 0.0, 0.0, 60.0)
                      ], 1.0, 60.0);
     this.distr_width_label = "Lambda";
 }
