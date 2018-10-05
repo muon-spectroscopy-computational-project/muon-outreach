@@ -125,7 +125,7 @@ exports.TwoSiteModel = function() {
                [new ArgDef('B_central', 'float', 
                            'Average magnetic field', 
                            'Average magnetic field for the two sites', 
-                           false, 0.0, -10.0, 10.0)],
+                           false, 0.0, 0.0, 20.0)],
                1.0, 20.0);
     this.distr_width_label = "Magnetic field difference"
 }
