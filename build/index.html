@@ -95,13 +95,23 @@
             <div class="tile is-parent is-vertical">
                 <div class="tile is-child text-box is-primary">
                     <div ng-switch="model_type" ng-cloak>
+                        <!-- Part common to all models -->
+
+                        <h3>How to use</h3>
+
+                        <p>Use the dropdown to select different models, representing different types of systems and magnetic field distributions.
+                            Parameters can be set by sliders. Most parameters are dependent on each model. The jump frequency parameter represents 
+                            the speed of a dynamical process - either the motion of the muon, or a fluctuation in the magnetic field, depending on the
+                            system. Damping due to fluctuations of other magnetic fields such as those from electrons can be modelled by changing T1.
+                        </p>                   
+                        <br>
                         <!-- Model descriptions -->
                         <div ng-switch-when="uniaxial" ng-cloak>
                             <h3>Gaussian distribution (along z axis)</h3>
                             <p>Here we consider an idealised situation where the muon experiences a Gaussian field distribution along only its spin direction.</p>
                             <p>The app shows how it responds to changes in the magnitude and fluctuation rate of that field distribution. Such a situation might occur in a layered system where both the magnetic moments point only out of the plane and the muon is coplanar with them, or special situations where hyperfine coupling is predominant.</p>
                             <p>Increasing the distribution width means that the muon spin is depolarised more quickly and in the absence of fluctuations this depolarisation takes a Gaussian form.</p>
-                            <p>Increasing the jump frequency, which could come from magnetic fluctuations or muon hopping, slows the depolarisation. Once the jump frequency exceeds   around three times the distribution width the depolarisation is well approximated by an exponential form.</p>
+                            <p>Increasing the jump frequency, which could come from magnetic fluctuations or muon hopping, slows the depolarisation. Once the jump frequency exceeds around three times the distribution width the depolarisation is well approximated by an exponential form.</p>
                         </div>
                         <div ng-switch-when="spherical" ng-cloak>
                             <h3>Gaussian distribution (spherical)</h3>
@@ -117,11 +127,11 @@
                             <p>Typical of superconductors of type II at low temperature, when the magnetic field penetrates the superconductor through a triangular lattice of so-called vortices, this distribution is characterised by an exponential decay of the residual magnetic field inside the bulk of the superconductor.</p>
                             <p>The parameter lambda represents the depth of penetration of the magnetic field inside the bulk of the superconductor; the distribution itself is given by the exponentially decaying fields that one finds further and further from each vortex.</p>
                             <p>Dynamics here can be related to motions of the muon or of the vortices themselves, which at higher temperature start drifting.</p>
-                            <p>An additional parameter is provided for an external magnetic field that can shift the frequency distribution as a whole.</p>
+                            <p>The external magnetic field is needed to put the superconductor into the mixed state where vortices form and allow the penetration depth, lambda, to be measured. Changing the field shifts the field distribution and the form of the data.</p>
                         </div>
                         <div ng-switch-when="twosite" ng-cloak>
                             <h3>Two site distribution</h3>
-                            <p>These are just two sites with different frequencies and a possible jumping process between them. The site frequencies, B<sub>1</sub> and B<sub>2</sub> are determined by a magnetic field difference, ΔB=(B<sub>2</sub>-B<sub>1</sub>), and by an average magnetic field (B<sub>1</sub>+B<sub>2</sub>)/2.</p>
+                            <p>Muons implanted into magnetic materials sometimes stop in positions that are magnetically inequivalent so they experience different magnetic fields. Here two sites with different frequencies and a possible jumping process between them are modelled for a single crystal. The site frequencies, B<sub>1</sub> and B<sub>2</sub> are determined by a magnetic field difference, ΔB=(B<sub>2</sub>-B<sub>1</sub>), and by an average magnetic field (B<sub>1</sub>+B<sub>2</sub>)/2.</p>
                         </div>
                         <div ng-switch-default>
                             No description available
