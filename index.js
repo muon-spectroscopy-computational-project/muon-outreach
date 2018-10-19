@@ -1,4 +1,3 @@
-d3 = require('d3');
 Angular = require('angular');
 Chartist = require('chartist');
 QString = require('query-string');
@@ -13,6 +12,7 @@ var muContr = angApp.controller('MuonModelController', function($scope,
     $window) {
 
     $scope.loading = false;
+    $scope.nodescr = false;
 
     $scope.model_funcs = {
         'uniaxial': Models.UniaxialGaussianModel,
@@ -99,6 +99,11 @@ var muContr = angApp.controller('MuonModelController', function($scope,
     else {
         $scope.update_model();
     }
+
+    if ('nodescr' in url_params) {
+        $scope.nodescr = true;
+    }
+
     $scope.plot();
 });
 
