@@ -1,4 +1,3 @@
-d3 = require('d3');
 Angular = require('angular');
 Chartist = require('chartist');
 QString = require('query-string');
