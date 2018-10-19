@@ -19,7 +19,7 @@
 
     <div class="section">
         <div class="tile is-ancestor" ng-controller="MuonModelController">
-            <div class="tile is-vertical is-6">
+            <div class="tile" ng-class="{'is-vertical': !nodescr, 'is-6': !nodescr}">
                 <div class="tile is-parent">
                     <!--
                     <div class="tile is-child is-danger is-4">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tile is-parent is-vertical">
+            <div class="tile is-parent is-vertical" ng-show="!nodescr">
                 <div class="tile is-child text-box is-primary">
                     <div ng-switch="model_type" ng-cloak>
                         <!-- Part common to all models -->
