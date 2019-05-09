@@ -1,6 +1,6 @@
 {
   "name": "muon-outreach",
-  "version": "0.5",
+  "version": "0.5.1",
   "description": "A demonstrative applet for muon relaxation",
   "main": "index.js",
   "scripts": {
